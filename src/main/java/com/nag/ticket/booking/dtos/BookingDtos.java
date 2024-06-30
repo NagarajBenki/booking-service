@@ -18,7 +18,6 @@ import java.util.UUID;
 @Validated
 public class BookingDtos {
 
-
     private UUID bookingId;
 
     @NotNull(message = "User Id Mandotory")

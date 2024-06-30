@@ -27,19 +27,17 @@ public class BookingController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private PaymentServiceBroker paymentService;
 
     @PostMapping("/create_booking")
     public ResponseEntity<ResponseDto> createBooking(@Valid @RequestBody  BookingDtos booking){
-        log.info("Entered into booking controller to create a new booking "+booking);
-        System.out.println(paymentService.createPayment());
+        log.info("Entered into booking controller to create a new booking {}",booking.toString());
+//        System.out.println(paymentService.makePayment());
         return new ResponseEntity<>(bookingService.createBooking(booking), HttpStatus.CREATED);
     }
 
     @PostMapping("/create_booking1")
     public ResponseEntity<ResponseDto> createBooking1(@RequestBody  String booking) throws JsonProcessingException {
-        log.info("Entered into booking controller to create a new booking "+booking);
+        log.info("Entered into booking controller to create a new booking {}",booking.toString());
         // to convert string json to object
         BookingDtos dto = objectMapper.readValue(booking,BookingDtos.class);
         String data = objectMapper.writeValueAsString(dto);

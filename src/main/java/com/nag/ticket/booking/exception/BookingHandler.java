@@ -37,4 +37,13 @@ public class BookingHandler {
                         .collect(Collectors.toList())).build();
         return new ResponseEntity<ResponseDto>(responseDto,HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ResponseDto> runTimeException(RuntimeException exception){
+        ResponseDto responseDto = ResponseDto.builder()
+                                .statusCodeDescription(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
+                                .errorDescription(exception.getMessage()).build();
+        return new ResponseEntity<ResponseDto>(responseDto,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

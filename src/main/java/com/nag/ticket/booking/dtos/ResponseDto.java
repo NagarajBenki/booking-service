@@ -17,4 +17,5 @@ public class ResponseDto {
     private String errorDescription;
     private List<String> errorMessages;
     private BookingDtos bookingDtos;
+    private String statusCodeDescription;
 }
